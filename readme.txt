@@ -1,7 +1,7 @@
 Custom linux kernel "Noir Linux kernel" Build Script
 Web site URL : https://note.com/vsrx
 Created by takamitsu_h
-February 7,2026
+February 17,2026
 
 このカスタムカーネルは、Ubuntu向けです。
 リアルタイム性能・レスポンス性能の向上を図ります。
@@ -24,44 +24,21 @@ noir_zen.patch、noir_bore.patchは、それらのパッチを統合した物で
 ZEN版、あるいはBORE版をビルド出来ます。
 
 1.Noir Linux Kernelパッチの組み立て
-$ ./build.sh -e patch -f zen (ZEN版)
-$ ./build.sh -e patch -f xenomai (BORE版)
+$ ./build.sh -e patch -f bore
 
 2.バニラカーネルのソースコード取得と解凍
-$ ./build.sh -e vanilla -f zen (ZEN版)
-$ ./build.sh -e vanilla -f xenomai (BORE版)
+$ ./build.sh -e vanilla -f bore
 
 3.パッチ当て
-$ ./build.sh -e source -f zen (ZEN版)
-$ ./build.sh -e source -f xenomai (BORE版)
+$ ./build.sh -e source -f bore
 
 4.前述を行った後にカスタムカーネルのビルド
-$ ./build.sh -e build -f zen (ZEN版)
-$ ./build.sh -e build -f xenomai (BORE版)
+$ ./build.sh -e build -f bore
 
 5.カーネルのインストール
-$ ./build.sh -e install_kernel -f zen (ZEN版)
-$ ./build.sh -e install_kernel -f bore (BORE版)
+$ ./build.sh -e install_kernel -f bore
 
-[ZEN版スペック]
-- Built on the GCC 13.3.0
-- CPU scheduler -> EEVDF
-- Default I/O scheduler -> MQ-deadline
-- Processor family -> Generic X86_64
-- Preemption Model -> Fully Preemptible Kernel (Real Time) 
-- CPU Timer frequency -> 700Hz
-- Kernel Compression mode -> zstd
-- RCU boost delay -> 339
-- Timer tick handling -> Full dynticks system
-- Default CPUFreq Governor -> schedutil
-- CPU idle governor -> TEO
-- Core scheduling for SMT ON
-- futex support
-- BBR3 support
-- Clear Linux support
-- Zen Interactive support
-
-[BORE版スペック]
+[スペック]
 - Built on the GCC 13.3.0
 - CPU scheduler -> BORE
 - Default I/O scheduler -> MQ-deadline
@@ -77,8 +54,6 @@ $ ./build.sh -e install_kernel -f bore (BORE版)
 - futex support
 - BBR3 support
 - Clear Linux support
-- VHBA support
-- ACS override support
 
 [patches]
 https://www.kernel.org/
