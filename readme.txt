@@ -1,7 +1,7 @@
 Custom linux kernel "Noir Linux kernel" Build Script
 Web site URL : https://note.com/vsrx
 Created by takamitsu_h
-July 20,2026
+August 18,2026
 
 このカスタムカーネルは、Ubuntu向けです。
 
@@ -38,7 +38,7 @@ $ ./build.sh -e install_kernel -f noir
 
 [スペック]
 - Built on the GCC 13.3.0
-- CPU scheduler -> EEVDF
+- CPU scheduler -> BORE
 - Default I/O scheduler -> Kyber
 - Processor family -> Generic X86_64
 - Preemption Model -> Scheduler controlled preemption model
@@ -49,13 +49,7 @@ $ ./build.sh -e install_kernel -f noir
 - Default CPUFreq Governor -> schedutil
 - CPU idle governor -> TEO
 - Core scheduling for SMT ON
-- futex support
 - Clear Linux support
-- OpenRGB support
-- ACS Override support
-- VHBA driver support
-- le9uo support
-- sched: Flatten the pick ON
 - CONFIG_TRANSPARENT_HUGEPAGE y
 - CONFIG_TRANSPARENT_HUGEPAGE_ALWAYS n
 - NTSync on
@@ -65,7 +59,6 @@ https://www.kernel.org/
 https://github.com/zen-kernel/zen-kernel
 https://github.com/sirlucjan/kernel-patches
 https://github.com/Frogging-Family/linux-tkg
-https://gitlab.com/xanmod/linux-patches
 https://lore.kernel.org/all/20260511113104.563854162@infradead.org/
 
 ◇I/Oスケジューラー確認方法

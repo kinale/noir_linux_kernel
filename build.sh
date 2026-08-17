@@ -1,7 +1,7 @@
 #!/bin/bash
 #custom linux kernel build script
 #Created by takamitsu_h
-#July 6,2026
+#August 18,2026
 
 . ./config
 
@@ -18,45 +18,36 @@ case $e_num in
 #build noir.patch
     patch)
         rm -r patches/linux/patch-$VERSIONPOINT
-        cd patches/linux
-        if  [ ${VERSIONPOINT: -2} != ".0" ]; then
-            wget https://cdn.kernel.org/pub/linux/kernel/v$LINUX_MAJOR.x/patch-$VERSIONPOINT.xz
-            unxz patch-$VERSIONPOINT.xz
-        fi
-        cd ../../
+#        cd patches/linux
+#        if  [ ${VERSIONPOINT: -2} != ".0" ]; then
+#            wget https://cdn.kernel.org/pub/linux/kernel/v$LINUX_MAJOR.x/patch-$VERSIONPOINT.xz
+#            unxz patch-$VERSIONPOINT.xz
+#        fi
+#        cd ../../
         cd patches/other
         rm -r *.patch
-        wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/futex-patches/0001-futex-$VERSIONBASE-Add-entry-point-for-FUTEX_WAIT_MULTIPLE-op.patch
+        wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0001-bore.patch
+        wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0013-optimize_harder_O3.patch
         wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0002-clear-patches.patch
         wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/bbr3-patches/0001-tcp-bbr3-add-BBRv3-congestion-control.patch
-        wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0013-optimize_harder_O3.patch
-        wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0006-add-acs-overrides_iommu.patch
-        wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0014-OpenRGB.patch
-        wget https://gitlab.com/xanmod/linux-patches/-/raw/master/linux-$VERSIONBASE.y-xanmod/xanmod/0009-XANMOD-block-Set-rq_affinity-to-force-complete-I-O-r.patch
-        wget https://github.com/zen-kernel/zen-kernel/commit/7c4891e860507a39b03f1a899b938089dffe3dcc.patch
-        wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/le9uo-patches/0001-mm-$VERSIONBASE-add-le9uo.patch
+        wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/cgroup-patches/0001-cgroup-patches.patch
         cd ../../
         truncate noir.patch --size 0
-        if [ -e patches/linux/patch-$VERSIONPOINT ]; then
-            cat patches/linux/patch-$VERSIONPOINT >> noir.patch
-        fi
+#        if [ -e patches/linux/patch-$VERSIONPOINT ]; then
+#            cat patches/linux/patch-$VERSIONPOINT >> noir.patch
+#        fi
         case $f_num in
             noir)
                 cat patches/noir_base/noir_base.patch \
                     >> noir.patch
             ;;
         esac
-        cat patches/sched_Flatten_the_pick.patch \
-            patches/other/0001-futex-$VERSIONBASE-Add-entry-point-for-FUTEX_WAIT_MULTIPLE-op.patch \
+        cat patches/other/0001-bore.patch \
             patches/other/0002-clear-patches.patch \
             patches/other/0001-tcp-bbr3-add-BBRv3-congestion-control.patch \
             patches/noir_base/default_kyber.patch \
             patches/other/0013-optimize_harder_O3.patch \
-            patches/other/0006-add-acs-overrides_iommu.patch \
-            patches/other/0014-OpenRGB.patch \
-            patches/other/0009-XANMOD-block-Set-rq_affinity-to-force-complete-I-O-r.patch \
-            patches/other/7c4891e860507a39b03f1a899b938089dffe3dcc.patch \
-            patches/other/0001-mm-$VERSIONBASE-add-le9uo.patch \
+            patches/other/0001-cgroup-patches.patch \
             >> noir.patch
            ;;
     vanilla)
