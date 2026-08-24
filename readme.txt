@@ -1,7 +1,7 @@
 Custom linux kernel "Noir Linux kernel" Build Script
 Web site URL : https://note.com/vsrx
 Created by takamitsu_h
-August 18,2026
+August 24,2026
 
 このカスタムカーネルは、Ubuntu向けです。
 
@@ -38,10 +38,10 @@ $ ./build.sh -e install_kernel -f noir
 
 [スペック]
 - Built on the GCC 13.3.0
-- CPU scheduler -> BORE
-- Default I/O scheduler -> Kyber
+- CPU scheduler -> EEVDF
+- Default I/O scheduler -> MQ-deadline
 - Processor family -> Generic X86_64
-- Preemption Model -> Scheduler controlled preemption model
+- Preemption Model -> Fully Preemptible Kernel (Real-Time)
 - CPU Timer frequency -> 1000Hz
 - Kernel Compression mode -> zstd
 - RCU boost delay -> 339

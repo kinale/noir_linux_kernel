@@ -1,7 +1,7 @@
 #!/bin/bash
 #custom linux kernel build script
 #Created by takamitsu_h
-#August 18,2026
+#August 23,2026
 
 . ./config
 
@@ -26,7 +26,8 @@ case $e_num in
 #        cd ../../
         cd patches/other
         rm -r *.patch
-        wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0001-bore.patch
+        wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/gaming-sched-patches/0001-gaming-sched-patches.patch
+        wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/rt-patches/0001-rt-patches.patch
         wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0013-optimize_harder_O3.patch
         wget https://raw.githubusercontent.com/Frogging-Family/linux-tkg/refs/heads/master/linux-tkg-patches/$VERSIONBASE/0002-clear-patches.patch
         wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/bbr3-patches/0001-tcp-bbr3-add-BBRv3-congestion-control.patch
@@ -42,12 +43,12 @@ case $e_num in
                     >> noir.patch
             ;;
         esac
-        cat patches/other/0001-bore.patch \
-            patches/other/0002-clear-patches.patch \
+        cat patches/other/0002-clear-patches.patch \
             patches/other/0001-tcp-bbr3-add-BBRv3-congestion-control.patch \
-            patches/noir_base/default_kyber.patch \
             patches/other/0013-optimize_harder_O3.patch \
             patches/other/0001-cgroup-patches.patch \
+            patches/other/0001-gaming-sched-patches.patch \
+            patches/other/0001-rt-patches.patch \
             >> noir.patch
            ;;
     vanilla)
