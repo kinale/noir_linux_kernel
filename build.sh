@@ -1,7 +1,7 @@
 #!/bin/bash
 #custom linux kernel build script
 #Created by takamitsu_h
-#August 23,2026
+#August 31,2026
 
 . ./config
 
@@ -18,12 +18,12 @@ case $e_num in
 #build noir.patch
     patch)
         rm -r patches/linux/patch-$VERSIONPOINT
-#        cd patches/linux
-#        if  [ ${VERSIONPOINT: -2} != ".0" ]; then
-#            wget https://cdn.kernel.org/pub/linux/kernel/v$LINUX_MAJOR.x/patch-$VERSIONPOINT.xz
-#            unxz patch-$VERSIONPOINT.xz
-#        fi
-#        cd ../../
+        cd patches/linux
+        if  [ ${VERSIONPOINT: -2} != ".0" ]; then
+            wget https://cdn.kernel.org/pub/linux/kernel/v$LINUX_MAJOR.x/patch-$VERSIONPOINT.xz
+            unxz patch-$VERSIONPOINT.xz
+        fi
+        cd ../../
         cd patches/other
         rm -r *.patch
         wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/gaming-sched-patches/0001-gaming-sched-patches.patch
@@ -34,9 +34,9 @@ case $e_num in
         wget https://raw.githubusercontent.com/sirlucjan/kernel-patches/refs/heads/master/$VERSIONBASE/cgroup-patches/0001-cgroup-patches.patch
         cd ../../
         truncate noir.patch --size 0
-#        if [ -e patches/linux/patch-$VERSIONPOINT ]; then
-#            cat patches/linux/patch-$VERSIONPOINT >> noir.patch
-#        fi
+        if [ -e patches/linux/patch-$VERSIONPOINT ]; then
+            cat patches/linux/patch-$VERSIONPOINT >> noir.patch
+        fi
         case $f_num in
             noir)
                 cat patches/noir_base/noir_base.patch \
